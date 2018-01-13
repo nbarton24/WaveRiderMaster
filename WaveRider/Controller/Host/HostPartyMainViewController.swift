@@ -88,9 +88,8 @@ class HostPartyMainViewController: UIViewController, SPTAudioStreamingDelegate, 
             
             self.session = spotifySession
             
-            //print("Woo Session!")
         }else{
-            //print("Nope.")
+            
         }
     }
     
@@ -103,7 +102,7 @@ class HostPartyMainViewController: UIViewController, SPTAudioStreamingDelegate, 
             self.player!.playbackDelegate = self
             self.player!.delegate = self
             //print(self.player)
-            //try! player?.start(withClientId: auth.clientID)
+            try! player?.start(withClientId: auth.clientID)
             
             
             self.player!.login(withAccessToken: authSession.accessToken)

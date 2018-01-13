@@ -93,7 +93,7 @@ class ViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudioStrea
             
             self.session = firstTimeSession
             
-            initializePLayer(authSession: session)
+            //initializePLayer(authSession: session)
         
         }else{
             print("Nope.")
