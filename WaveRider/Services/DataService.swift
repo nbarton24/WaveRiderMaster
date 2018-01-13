@@ -174,11 +174,27 @@ class DataService {
         
     }
     
+    func partyStatusChanged(forParty code:String, handler:@escaping(_ roundStatus:String)->()){
+        
+        REF_PARTIES.child(code).child("status").observe(.value){(snapshot) in
+            if snapshot.exists(){
+                if let newStatus = snapshot.value {
+                    let status = newStatus as! String
+                    handler(status)
+                }else{
+                    handler("UNKNOWN")
+                }
+            }else{
+                handler("UNKNOWN")
+            }
+        }
+        
+    }
+    
     func votingEndsChanged(forParty code:String, handler:@escaping(_ endTime:Double)->()){
         
         REF_PARTIES.child(code).child("votingEnds").observe(.value){(snapshot) in
             if snapshot.exists(){
-                print(snapshot)
                 if let ends = snapshot.value {
                     let time = ends as! Double
                     handler(time)
