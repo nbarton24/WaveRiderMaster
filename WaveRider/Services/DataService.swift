@@ -65,6 +65,21 @@ class DataService {
         
     }
     
+    func connectTo(partyCode code:String,asUser user:String){
+        let userInfo = ["isHost":false,
+                        "round":code] as [String : Any]
+        let childUpdates = ["/parties/\(code)/voters/\(user)":true,
+                            "/users/\(user)":userInfo] as [String : Any]
+        REF_BASE.updateChildValues(childUpdates)
+    }
+    
+    func castVote(forParty code:String,asUser user:String,withVote vote:Int){
+        
+        let vote = [user:vote]
+        
+        REF_PARTIES.child(code).child("votes").updateChildValues(vote)
+    }
+    
     func createParty(roundCode code:String, roundName name:String, roundNotes notes:String, creator user:String, handler: @escaping(_ message:Bool)->()){
         
         let votes = ["nick":1,
@@ -110,6 +125,71 @@ class DataService {
                 handler("")
             }
         }
+    }
+    
+    func currentSongChanged(forParty code:String, handler:@escaping(_ title:String,_ atrist:String,_ image:String)->()){
+        
+        REF_PARTIES.child(code).child("currentSong").observe(.value){(snapshot) in
+            var songTitle = ""
+            var songArtist = ""
+            var albumArt = ""
+            
+            if snapshot.exists(){
+                if let title = snapshot.childSnapshot(forPath: "title").value {
+                    songTitle = String(describing: title)
+                }
+                if let artist = snapshot.childSnapshot(forPath: "artist").value {
+                    songArtist = String(describing: artist)
+                }
+                if let image = snapshot.childSnapshot(forPath: "albumArt").value {
+                    albumArt = String(describing: image)
+                }
+            }
+            
+            handler(songTitle, songArtist, albumArt)
+            
+        }
+    }
+    
+    func songOptionsChanged(forParty code:String, handler:@escaping(_ songs:[String])->()){
+        var returnSongs = ["Song 1","Song 2","Song 3","Song 4"]
+        REF_PARTIES.child(code).child("songs").observe(.value){(snapshot) in
+            
+            if snapshot.exists(){
+                if let song1 = snapshot.childSnapshot(forPath: "1/0").value{
+                    returnSongs[0] = String(describing:song1)
+                }
+                if let song2 = snapshot.childSnapshot(forPath: "2/0").value{
+                    returnSongs[1] = String(describing:song2)
+                }
+                if let song3 = snapshot.childSnapshot(forPath: "3/0").value{
+                    returnSongs[2] = String(describing:song3)
+                }
+                if let song4 = snapshot.childSnapshot(forPath: "4/0").value{
+                    returnSongs[3] = String(describing:song4)
+                }
+            }
+            handler(returnSongs)
+        }
+        
+    }
+    
+    func votingEndsChanged(forParty code:String, handler:@escaping(_ endTime:Double)->()){
+        
+        REF_PARTIES.child(code).child("votingEnds").observe(.value){(snapshot) in
+            if snapshot.exists(){
+                print(snapshot)
+                if let ends = snapshot.value {
+                    let time = ends as! Double
+                    handler(time)
+                }else{
+                    handler(0.0)
+                }
+            }else{
+                handler(0.0)
+            }
+        }
+        
     }
     
     func partyReady(forParty code:String){

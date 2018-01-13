@@ -25,6 +25,7 @@ class JoinPartyViewController: UIViewController {
                 if (returnCode==true){
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let pvvc = storyboard.instantiateViewController(withIdentifier: "PartyVotingViewController") as! PartyVotingViewController
+                    pvvc.partyCode = inputCode
                     self.present(pvvc, animated: true, completion: nil)
                 }else{
                     print("That round code is no longer valid")

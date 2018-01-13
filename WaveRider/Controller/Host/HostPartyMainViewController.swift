@@ -43,6 +43,7 @@ class HostPartyMainViewController: UIViewController, SPTAudioStreamingDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         partyIDLabel.text = partyCode!
+        
         print("Main VDL")
         setup()
         checkSession()
@@ -151,9 +152,11 @@ class HostPartyMainViewController: UIViewController, SPTAudioStreamingDelegate, 
         let currentSong = Randomizer.instance.currentSong
         let currentSongURI = currentSong.uri
         
+        
         self.player?.playSpotifyURI(currentSongURI, startingWith: 0, startingWithPosition: 0, callback: { (error) in
             if (error == nil){
                 self.loadImage(imageString: currentSong.albumArtworkLarge)
+                self.currentSongImage.isHidden = false
                 self.currentSongTitleLabel.text = currentSong.title
                 self.currentSongArtistLabel.text = currentSong.artist
                 var songDuration = Double(currentSong.duration)/1000
@@ -166,6 +169,9 @@ class HostPartyMainViewController: UIViewController, SPTAudioStreamingDelegate, 
                 Randomizer.instance.updateFirebaseForNewRound()
                 self.runTimer()
                 self.hasPlayed = true
+                self.currentSongImage.isHidden = false
+                self.currentSongArtistLabel.isHidden = false
+                self.currentSongTitleLabel.isHidden = false
             }else{
                 print("Error - \(String(describing: error))")
             }
@@ -190,25 +196,6 @@ class HostPartyMainViewController: UIViewController, SPTAudioStreamingDelegate, 
         Randomizer.instance.updateFirebaseForNewRound()
         self.runTimer()
         
-//        self.player?.playSpotifyURI(currentSongURI, startingWith: 0, startingWithPosition: 0, callback: { (error) in
-//            if (error == nil){
-//                self.loadImage(imageString: currentSong.albumArtworkLarge)
-//                self.currentSongTitleLabel.text = currentSong.title
-//                self.currentSongArtistLabel.text = currentSong.artist
-//                var songDuration = Double(currentSong.duration)/1000
-//                if (songDuration > 30){
-//                    songDuration-=30
-//                }
-//                let endTime = TimeInterval(songDuration)
-//                self.votingEnds = NSDate(timeInterval: endTime, since: Date())
-//                Randomizer.instance.votingEnds = NSDate(timeInterval: endTime, since: Date())
-//                Randomizer.instance.updateFirebaseForNewRound()
-//                self.runTimer()
-//
-//            }else{
-//                print("Error - \(String(describing: error))")
-//            }
-//        })
     }
     
     func loadImage(imageString:String){

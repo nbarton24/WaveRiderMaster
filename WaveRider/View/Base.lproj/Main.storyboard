@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -184,7 +185,16 @@
                                 <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voting Ends In : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wb-6z-CeB">
-                                        <rect key="frame" x="8" y="8" width="359" height="44"/>
+                                        <rect key="frame" x="8" y="8" width="150" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="0wj-ZB-pkR"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amj-rh-Ajl">
+                                        <rect key="frame" x="158" y="8" width="209" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -194,9 +204,12 @@
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="1wb-6z-CeB" secondAttribute="bottom" constant="8" id="4Dk-zt-bSF"/>
                                     <constraint firstAttribute="height" constant="60" id="HPe-Yv-hkz"/>
-                                    <constraint firstAttribute="trailing" secondItem="1wb-6z-CeB" secondAttribute="trailing" constant="8" id="P92-3d-2UW"/>
+                                    <constraint firstAttribute="trailing" secondItem="amj-rh-Ajl" secondAttribute="trailing" constant="8" id="Ije-MY-6UW"/>
+                                    <constraint firstItem="amj-rh-Ajl" firstAttribute="leading" secondItem="1wb-6z-CeB" secondAttribute="trailing" id="XfJ-Tt-xSE"/>
                                     <constraint firstItem="1wb-6z-CeB" firstAttribute="leading" secondItem="UBs-en-OSD" secondAttribute="leading" constant="8" id="loa-Kr-Qa4"/>
+                                    <constraint firstAttribute="bottom" secondItem="amj-rh-Ajl" secondAttribute="bottom" constant="8" id="nXO-EO-Br0"/>
                                     <constraint firstItem="1wb-6z-CeB" firstAttribute="top" secondItem="UBs-en-OSD" secondAttribute="top" constant="8" id="sh3-hf-zho"/>
+                                    <constraint firstItem="amj-rh-Ajl" firstAttribute="top" secondItem="UBs-en-OSD" secondAttribute="top" constant="8" id="zFl-Gw-sfE"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1s0-Fv-WIK">
@@ -271,21 +284,33 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="63.5"/>
                                                 <color key="backgroundColor" red="0.85739151554404147" green="0.85739151554404147" blue="0.85739151554404147" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="voteCast:" destination="hC9-6U-QQo" eventType="touchUpInside" id="LNh-u1-qwP"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLF-LW-yCJ">
                                                 <rect key="frame" x="0.0" y="71.5" width="335" height="63.5"/>
                                                 <color key="backgroundColor" red="0.85883444547653198" green="0.85883712768554688" blue="0.85884296894073486" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="voteCast:" destination="hC9-6U-QQo" eventType="touchUpInside" id="mPm-pF-LP7"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jyd-ya-WvR">
                                                 <rect key="frame" x="0.0" y="143" width="335" height="63.5"/>
                                                 <color key="backgroundColor" red="0.85883444547653198" green="0.85883712768554688" blue="0.85884296894073486" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="voteCast:" destination="hC9-6U-QQo" eventType="touchUpInside" id="SIm-JA-enR"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J3g-Rj-TWM">
                                                 <rect key="frame" x="0.0" y="214.5" width="335" height="63.5"/>
                                                 <color key="backgroundColor" red="0.85883444547653198" green="0.85883712768554688" blue="0.85884296894073486" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="voteCast:" destination="hC9-6U-QQo" eventType="touchUpInside" id="OLd-mZ-ak5"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -317,6 +342,17 @@
                         <viewLayoutGuide key="safeArea" id="T2M-E5-xG3"/>
                     </view>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="countdownLabel" destination="amj-rh-Ajl" id="VXj-bD-qgA"/>
+                        <outlet property="currentSongArtist" destination="fWr-J4-3vq" id="dbs-HS-vvw"/>
+                        <outlet property="currentSongImage" destination="LEn-qF-wHl" id="2tI-P5-uAT"/>
+                        <outlet property="currentSongTitle" destination="eMS-qd-1OP" id="zhQ-qD-RZY"/>
+                        <outlet property="partyCodeLabel" destination="qc5-T1-4UA" id="ODf-cb-tc8"/>
+                        <outlet property="songFourButton" destination="J3g-Rj-TWM" id="5ga-pa-4Cj"/>
+                        <outlet property="songOneButton" destination="5Y0-wz-oxs" id="aBW-un-fCQ"/>
+                        <outlet property="songThreeButton" destination="jyd-ya-WvR" id="E6O-Q4-LqO"/>
+                        <outlet property="songTwoButton" destination="QLF-LW-yCJ" id="Pcy-zg-gHz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MpN-os-PAt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -777,7 +813,7 @@
                                     <constraint firstItem="0Hi-tO-kgP" firstAttribute="top" secondItem="wrC-Za-jjU" secondAttribute="top" id="zpA-rV-6jY"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reputation" translatesAutoresizingMaskIntoConstraints="NO" id="TwL-Hv-wAS">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TwL-Hv-wAS">
                                 <rect key="frame" x="40" y="100" width="295" height="295"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="TwL-Hv-wAS" secondAttribute="height" multiplier="1:1" id="vzZ-TL-app"/>
@@ -786,13 +822,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lFf-Cd-qnO">
                                 <rect key="frame" x="20" y="403" width="335" height="75"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="...Ready For It?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="801-WE-zye">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="...Ready For It?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="801-WE-zye">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="45"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taylor Swift" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nm4-K1-RWl">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taylor Swift" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nm4-K1-RWl">
                                         <rect key="frame" x="0.0" y="45" width="335" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
