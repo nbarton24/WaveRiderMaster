@@ -80,30 +80,42 @@ class DataService {
         REF_PARTIES.child(code).child("votes").updateChildValues(vote)
     }
     
-    func createParty(roundCode code:String, roundName name:String, roundNotes notes:String, creator user:String, handler: @escaping(_ message:Bool)->()){
+    func createParty(forParty code:String, roundName name:String, roundNotes notes:String, creator user:String, handler: @escaping(_ wasAdded:Bool,_ withMessage:String)->()){
         
-        let votes = ["nick":1,
-                      "other Nick":1];
-        let voters = ["nick":true,
-                      "other Nick":true];
+        REF_PARTIES.child(code).observeSingleEvent(of: .value){(snapshot) in
+            
+            if snapshot.exists(){
+                /*print("Exists")
+                if let partyStatus = snapshot.childSnapshot(forPath: "status").value{
+                    print("Status is \(partyStatus)")
+                }*/
+                handler(false,"Round already exists")
+            }else{
+                let votes = ["nick":1,
+                             "other Nick":1];
+                let voters = ["nick":true,
+                              "other Nick":true];
+                
+                let roundInfo = ["diaplayName":name,
+                                 "roundNotes":notes,
+                                 "host":user,
+                                 "status":"setup",
+                                 "voters":voters,
+                                 "votes":votes] as [String : Any]
+                
+                let userInfo = ["isHost":true,
+                                "round":code] as [String : Any]
+                
+                let childUpdates = ["/parties/\(code)":roundInfo,
+                                    "/users/\(user)":userInfo]
+                
+                self.REF_BASE.updateChildValues(childUpdates)
+                //Need to handle the status and pass something back to transition viewController if successful
+                handler(true,"Success!")
+            }
+        }
         
-        let roundInfo = ["diaplayName":name,
-                         "roundNotes":notes,
-                         "host":user,
-                         "status":"setup",
-                         "voters":voters,
-                         "votes":votes] as [String : Any]
         
-        let userInfo = ["isHost":true,
-                        "round":code] as [String : Any]
-        
-        let childUpdates = ["/parties/\(code)":roundInfo,
-                            "/users/\(user)":userInfo]
-        
-        REF_BASE.updateChildValues(childUpdates)
-        //Need to handle the status and pass something back to transition viewController if successful
-        
-        handler(true)
     }
     
     func voterCountForParty(partyCode code:String, handler:@escaping(_ count:Int)->()){
@@ -114,6 +126,13 @@ class DataService {
             handler(Int(count))
         }
         
+    }
+    
+    func removeUser(fromParty code:String, userID:String){
+        let childUpdates = ["parties/\(code)/voters/\(userID)":"false",
+                            "users/\(userID)/round":"",
+                            "users/\(userID)/isHost":""]
+        REF_BASE.updateChildValues(childUpdates)
     }
     
     func nextTrackChanged(forParty code:String, handler:@escaping(_ trackURI:String)->()){

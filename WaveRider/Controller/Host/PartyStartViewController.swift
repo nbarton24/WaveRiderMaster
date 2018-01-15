@@ -13,8 +13,6 @@ class PartyStartViewController: UIViewController,UITextFieldDelegate {
     var userID = UIDevice.current.identifierForVendor?.uuidString
     
     @IBOutlet weak var roundCodeTF: UITextField!
-    @IBOutlet weak var roundNameTF: UITextField!
-    @IBOutlet weak var roundNotesTF: UITextField!
     
     
     override func viewDidLoad() {
@@ -24,14 +22,20 @@ class PartyStartViewController: UIViewController,UITextFieldDelegate {
 
     @IBAction func addRoundButtonPressed(_ sender: Any) {
         if let code = roundCodeTF.text, let user = userID {
-            let name = roundNameTF.text ?? ""
-            let notes = roundNotesTF.text ?? ""
-            DataService.instance.createParty(roundCode: code, roundName: name, roundNotes: notes, creator: user, handler: { (status) in
-                print("Round Added")
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let hppvc = storyboard.instantiateViewController(withIdentifier: "HostSetupPlaylistViewController") as! HostSetupPlaylistViewController
-                hppvc.roundID = code
-                self.present(hppvc, animated: true, completion: nil)
+            let name = ""
+            let notes = ""
+            if (code == "") {return}
+            DataService.instance.createParty(forParty: code, roundName: name, roundNotes: notes, creator: user, handler: { (status,returnMsg) in
+                
+                if (status){
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let hppvc = storyboard.instantiateViewController(withIdentifier: "HostSetupPlaylistViewController") as! HostSetupPlaylistViewController
+                    hppvc.roundID = code
+                    self.present(hppvc, animated: true, completion: nil)
+                }else{
+                    print("Error Adding Round - \(returnMsg)")
+                }
+                
             })
         }
     }

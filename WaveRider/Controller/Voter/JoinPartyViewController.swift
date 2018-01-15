@@ -8,12 +8,12 @@
 
 import UIKit
 
-class JoinPartyViewController: UIViewController {
+class JoinPartyViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var partyCodeTF: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        partyCodeTF.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -36,6 +36,11 @@ class JoinPartyViewController: UIViewController {
             print("You must enter a code")
         }
         
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
 

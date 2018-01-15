@@ -5,6 +5,7 @@
 //  Created by Nick Barton on 12/2/17.
 //  Copyright © 2017 Nick Barton. All rights reserved.
 //
+//
 
 import UIKit
 import SafariServices
@@ -27,24 +28,49 @@ class ViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudioStrea
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setup()
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.updateAfterFirstLogin), name: NSNotification.Name(rawValue: "loginSuccessful"), object: nil)
-        for _ in 0..<10{
-            print("Is it \(NSDate().debugDescription)")
-        }
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //print("Player - \(String(describing: player?.loggedIn))")
-        //print("Auth - \(auth)")
+        
+        if let partyCode = UserDefaults.standard.value(forKey: "lastActiveRound"), let voterType = UserDefaults.standard.value(forKey: "userType"){
+            
+            let code = String(describing: partyCode)
+            switch code {
+            case "voter":
+                print("You were last in \(partyCode) as a \(voterType)")
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let pvvc = storyboard.instantiateViewController(withIdentifier: "PartyVotingViewController") as! PartyVotingViewController
+                pvvc.partyCode = String(describing:partyCode)
+                present(pvvc, animated: true, completion: nil)
+            case "host":
+                print("You were last in \(partyCode) as a \(voterType)")
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let hpmcv = storyboard.instantiateViewController(withIdentifier: "HostPartyMainViewController") as! HostPartyMainViewController
+                hpmcv.partyCode = code
+                present(hpmcv, animated: true, completion: nil)
+            default:
+                print("Invalid value in user defaults")
+                
+            }
+            /*print("You were last in \(partyCode) as a \(voterType)")
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let pvvc = storyboard.instantiateViewController(withIdentifier: "PartyVotingViewController") as! PartyVotingViewController
+            pvvc.partyCode = String(describing:partyCode)
+            present(pvvc, animated: true, completion: nil)*/
+        }else{
+            
+        }
+        
         checkSession()
         if session != nil {
-            //print("Session Validity - \(session.isValid())")
-            //print("Session Access Token - \(session.accessToken)")
+            
         }else{
-            //print("Session is nil")
+            
         }
         
     }
@@ -66,9 +92,9 @@ class ViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudioStrea
             let spotifySession = NSKeyedUnarchiver.unarchiveObject(with: sessionDataObj) as! SPTSession
             
             self.session = spotifySession
-            //print("Woo Session!")
+            
         }else{
-            //print("Nope.")
+            
         }
     }
     
@@ -102,13 +128,7 @@ class ViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudioStrea
     }
     
     func audioStreamingDidLogin(_ audioStreaming: SPTAudioStreamingController){
-//        self.player?.playSpotifyURI("spotify:track:28fuXrmmF9dYWx25dMW9dP", startingWith: 0, startingWithPosition: 0, callback: { (error) in
-//            if (error == nil){
-//                //print("Playing song")
-//            }else{
-//                print("Error - \(String(describing: error))")
-//            }
-//        })
+
         print("Would have played the song")
     }
     

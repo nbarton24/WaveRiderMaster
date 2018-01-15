@@ -44,6 +44,9 @@ class HostPartyMainViewController: UIViewController, SPTAudioStreamingDelegate, 
         super.viewDidLoad()
         partyIDLabel.text = partyCode!
         
+        UserDefaults.standard.set(partyCode!, forKey: "lastActiveRound")
+        UserDefaults.standard.set("host", forKey: "userType")
+        
         print("Main VDL")
         setup()
         checkSession()

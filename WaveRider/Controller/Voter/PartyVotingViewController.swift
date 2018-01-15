@@ -37,6 +37,8 @@ class PartyVotingViewController: UIViewController {
         if let code = partyCode{
             partyCodeLabel.text = code
             connectToFirebase(withCode: code)
+            UserDefaults.standard.set(code, forKey: "lastActiveRound")
+            UserDefaults.standard.set("voter", forKey: "userType")
         }
     }
     
@@ -174,6 +176,26 @@ class PartyVotingViewController: UIViewController {
         DataService.instance.castVote(forParty: partyCode!, asUser: user, withVote: currentVote)
         
     }
+    
+    @IBAction func leaveRoundButtonPressed(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "Leave Party", message: "Are you sure you want to leave the party?", preferredStyle: .alert)
+        let clearAction = UIAlertAction(title: "Bye!", style: .destructive) { (alert: UIAlertAction!) -> Void in
+             UserDefaults.standard.removeObject(forKey: "lastActiveRound")
+             UserDefaults.standard.removeObject(forKey: "userType")
+             DataService.instance.removeUser(fromParty: self.partyCode, userID: self.user)
+             self.dismiss(animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "I'll stay!", style: .default) { (alert: UIAlertAction!) -> Void in
+            print("Leave action cancelled")
+        }
+        
+        alert.addAction(clearAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion:nil)
+    }
+    
     
     
     

@@ -14,6 +14,7 @@ class HostPrePartyViewController: UIViewController {
 
     @IBOutlet weak var startPartyButton: UIButton!
     @IBOutlet weak var participantCountLabel: UILabel!
+    @IBOutlet weak var partyCodeLabel: UILabel!
     
     let kClientID = "49c32ed6a0f74e1f9339ba3c40b8ca15"
     let kClientSecret = "280285cb1fd84f59972ff19e104fb4bf"
@@ -32,7 +33,7 @@ class HostPrePartyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        playlist.printPL()
+        partyCodeLabel.text = roundID
         checkSession()
         if session != nil {
             if session.isValid() == false{
@@ -50,8 +51,6 @@ class HostPrePartyViewController: UIViewController {
         }
     
         if (readyToParty && Randomizer.instance.initialized) {
-            //Do the rest
-            //DataService.instance.partyReady(forParty: roundID!)
             DataService.instance.changePartyStatus(forParty: roundID!, status: "Ready")
         }else{
             //Retry
