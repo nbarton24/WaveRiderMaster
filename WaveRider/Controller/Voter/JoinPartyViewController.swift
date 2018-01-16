@@ -38,9 +38,22 @@ class JoinPartyViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if (string.contains(" ")) {
+            return false
+        }else{
+            return true
+        }
     }
     
 

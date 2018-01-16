@@ -153,6 +153,21 @@ class HostSetupPlaylistViewController: UIViewController {
         self.present(roundVC, animated: true, completion: nil)
     }
     
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        let alert = UIAlertController(title: "Cancel Party?", message: "The Party \(roundID!) will be cancelled", preferredStyle: .alert)
+        let clearAction = UIAlertAction(title: "Bye!", style: .destructive) { (alert: UIAlertAction!) -> Void in
+            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "I'll stay!", style: .default) { (alert: UIAlertAction!) -> Void in
+            print("Leave action cancelled")
+        }
+        
+        alert.addAction(clearAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion:nil)
+    }
+    
     
 }
 extension HostSetupPlaylistViewController: UITableViewDelegate, UITableViewDataSource{

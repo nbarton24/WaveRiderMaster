@@ -184,7 +184,8 @@ class PartyVotingViewController: UIViewController {
              UserDefaults.standard.removeObject(forKey: "lastActiveRound")
              UserDefaults.standard.removeObject(forKey: "userType")
              DataService.instance.removeUser(fromParty: self.partyCode, userID: self.user)
-             self.dismiss(animated: true, completion: nil)
+             //self.dismiss(animated: true, completion: nil)
+             self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
         }
         let cancelAction = UIAlertAction(title: "I'll stay!", style: .default) { (alert: UIAlertAction!) -> Void in
             print("Leave action cancelled")

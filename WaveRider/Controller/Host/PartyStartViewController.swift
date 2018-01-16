@@ -18,6 +18,7 @@ class PartyStartViewController: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         roundCodeTF.delegate = self
+        roundCodeTF.text = randomString()
     }
 
     @IBAction func addRoundButtonPressed(_ sender: Any) {
@@ -40,9 +41,38 @@ class PartyStartViewController: UIViewController,UITextFieldDelegate {
         }
     }
     
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func randomString() -> String {
+        
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        let len = UInt32(letters.length)
+        
+        var randomString = ""
+        
+        for _ in 0 ..< 5 {
+            let rand = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(rand))
+            randomString += NSString(characters: &nextChar, length: 1) as String
+        }
+        
+        return randomString
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if (string.contains(" ")) {
+            return false
+        }else{
+            return true
+        }
     }
     
 

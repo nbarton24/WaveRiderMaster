@@ -15,6 +15,7 @@ class HostPrePartyViewController: UIViewController {
     @IBOutlet weak var startPartyButton: UIButton!
     @IBOutlet weak var participantCountLabel: UILabel!
     @IBOutlet weak var partyCodeLabel: UILabel!
+    @IBOutlet weak var selectedPlaylistLabel: UILabel!
     
     let kClientID = "49c32ed6a0f74e1f9339ba3c40b8ca15"
     let kClientSecret = "280285cb1fd84f59972ff19e104fb4bf"
@@ -44,7 +45,7 @@ class HostPrePartyViewController: UIViewController {
         }else{
             //showLogin()
         }
-        
+        selectedPlaylistLabel.text = "Using Playlist - \(playlist.name)"
         DataService.instance.voterCountForParty(partyCode: roundID!) { (partyVoters) in
             self.participants = partyVoters
             self.participantCountLabel.text = "\(self.participants)"
@@ -167,5 +168,10 @@ class HostPrePartyViewController: UIViewController {
         }
         //Randomizer.instance.showRandomizer()
     }
+    
+    @IBAction func changePlaylistButtonPressed(_ sender: Any) {
+        print("Ok Changing the playlist! ...EVENTUALLY.")
+    }
+    
     
 }

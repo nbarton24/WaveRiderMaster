@@ -240,6 +240,27 @@ class HostPartyMainViewController: UIViewController, SPTAudioStreamingDelegate, 
         getImageFromUrl.resume()
     }
     
+    @IBAction func leaveRoundButtonPressed(_ sender: Any) {
+        let alert = UIAlertController(title: "Cancel Party?", message: "The Party \(partyCode) will be cancelled. This can not be undone", preferredStyle: .alert)
+        let clearAction = UIAlertAction(title: "Bye!", style: .destructive) { (alert: UIAlertAction!) -> Void in
+            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "I'll stay!", style: .default) { (alert: UIAlertAction!) -> Void in
+            print("Leave action cancelled")
+        }
+        
+        alert.addAction(clearAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion:nil)
+    }
+    
+    @IBAction func changePlaybackStateButtonPressed(_ sender: Any) {
+        print("Changing Playback State")
+    }
+    
+    
+    
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didStartPlayingTrack trackUri: String!) {
         print("Callback - Song playing")
         

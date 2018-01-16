@@ -110,6 +110,17 @@
                                     <action selector="joinPartyButtonPressed:" destination="7ss-kA-Fsd" eventType="touchUpInside" id="Znc-fY-vuY"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2j-f9-egU">
+                                <rect key="frame" x="125" y="298" width="125" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="jNg-4N-N6a"/>
+                                    <constraint firstAttribute="height" constant="25" id="kGe-LA-R8q"/>
+                                </constraints>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButtonPressed:" destination="7ss-kA-Fsd" eventType="touchUpInside" id="Hzk-uL-oEl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -117,8 +128,11 @@
                             <constraint firstItem="oa7-6f-SKC" firstAttribute="trailing" secondItem="uWZ-Mo-4U7" secondAttribute="trailing" constant="125" id="4lz-Uc-9Js"/>
                             <constraint firstItem="uWZ-Mo-4U7" firstAttribute="leading" secondItem="oa7-6f-SKC" secondAttribute="leading" constant="125" id="AAI-Br-5fR"/>
                             <constraint firstItem="73F-f4-Z2Q" firstAttribute="leading" secondItem="oa7-6f-SKC" secondAttribute="leading" constant="50" id="G6Q-T5-Ad9"/>
+                            <constraint firstItem="oa7-6f-SKC" firstAttribute="trailing" secondItem="R2j-f9-egU" secondAttribute="trailing" constant="125" id="KAI-eN-2dX"/>
                             <constraint firstItem="uWZ-Mo-4U7" firstAttribute="top" secondItem="73F-f4-Z2Q" secondAttribute="bottom" constant="20" id="ZMM-75-rQB"/>
+                            <constraint firstItem="R2j-f9-egU" firstAttribute="leading" secondItem="oa7-6f-SKC" secondAttribute="leading" constant="125" id="d4i-Mm-VUO"/>
                             <constraint firstItem="oa7-6f-SKC" firstAttribute="trailing" secondItem="73F-f4-Z2Q" secondAttribute="trailing" constant="50" id="gcl-97-kBk"/>
+                            <constraint firstItem="R2j-f9-egU" firstAttribute="top" secondItem="uWZ-Mo-4U7" secondAttribute="bottom" constant="8" id="oaJ-wv-jB5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oa7-6f-SKC"/>
                     </view>
@@ -429,14 +443,27 @@
                                     <action selector="addRoundButtonPressed:" destination="1vR-EW-6zI" eventType="touchUpInside" id="xcd-Bd-cpI"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPh-3U-JtL">
+                                <rect key="frame" x="125" y="298" width="125" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="NeT-bH-ahF"/>
+                                </constraints>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButtonPressed:" destination="1vR-EW-6zI" eventType="touchUpInside" id="sld-W3-Zn8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="gyl-KZ-ve5" firstAttribute="top" secondItem="MnA-58-J55" secondAttribute="top" constant="125" id="2MT-Uu-cE7"/>
+                            <constraint firstItem="kPh-3U-JtL" firstAttribute="top" secondItem="i8L-af-DmJ" secondAttribute="bottom" constant="8" id="6VU-Pf-ofZ"/>
                             <constraint firstItem="MnA-58-J55" firstAttribute="trailing" secondItem="i8L-af-DmJ" secondAttribute="trailing" constant="125" id="8HZ-NZ-ZvX"/>
                             <constraint firstItem="gyl-KZ-ve5" firstAttribute="leading" secondItem="MnA-58-J55" secondAttribute="leading" constant="50" id="TaO-Hd-8UC"/>
                             <constraint firstItem="i8L-af-DmJ" firstAttribute="leading" secondItem="MnA-58-J55" secondAttribute="leading" constant="125" id="XTJ-YJ-uDV"/>
+                            <constraint firstItem="MnA-58-J55" firstAttribute="trailing" secondItem="kPh-3U-JtL" secondAttribute="trailing" constant="125" id="gpf-NN-JLz"/>
                             <constraint firstItem="MnA-58-J55" firstAttribute="trailing" secondItem="gyl-KZ-ve5" secondAttribute="trailing" constant="50" id="jfe-u2-Ei9"/>
+                            <constraint firstItem="kPh-3U-JtL" firstAttribute="leading" secondItem="MnA-58-J55" secondAttribute="leading" constant="125" id="wxh-Sv-ots"/>
                             <constraint firstItem="i8L-af-DmJ" firstAttribute="top" secondItem="gyl-KZ-ve5" secondAttribute="bottom" constant="20" id="ymd-4Q-pDz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MnA-58-J55"/>
@@ -466,9 +493,12 @@
                                             <constraint firstAttribute="width" secondItem="C6K-4o-9gG" secondAttribute="height" multiplier="1:1" id="S0g-Nc-wsd"/>
                                         </constraints>
                                         <state key="normal" title="O"/>
+                                        <connections>
+                                            <action selector="cancelButtonPressed:" destination="N5D-xl-HJt" eventType="touchUpInside" id="E0I-CH-Tx3"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Playlist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEj-rQ-0Ch">
-                                        <rect key="frame" x="60" y="30" width="255" height="40"/>
+                                        <rect key="frame" x="60" y="30" width="106.5" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -480,26 +510,15 @@
                                             <constraint firstAttribute="height" constant="20" id="ITh-Mi-ujs"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xl1-Jk-Ffm">
-                                        <rect key="frame" x="323" y="28" width="44" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="xl1-Jk-Ffm" secondAttribute="height" multiplier="1:1" id="VZ9-3d-ETT"/>
-                                        </constraints>
-                                        <state key="normal" title="A"/>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="C6K-4o-9gG" firstAttribute="leading" secondItem="lKs-23-wpr" secondAttribute="leading" constant="8" id="68x-PO-mPy"/>
-                                    <constraint firstAttribute="bottom" secondItem="xl1-Jk-Ffm" secondAttribute="bottom" constant="8" id="BQm-bt-p01"/>
-                                    <constraint firstItem="xl1-Jk-Ffm" firstAttribute="top" secondItem="yjE-38-AaV" secondAttribute="bottom" constant="8" id="Ewx-Xg-OdI"/>
                                     <constraint firstItem="cEj-rQ-0Ch" firstAttribute="top" secondItem="yjE-38-AaV" secondAttribute="bottom" constant="10" id="F82-Xe-9Hr"/>
-                                    <constraint firstAttribute="trailing" secondItem="xl1-Jk-Ffm" secondAttribute="trailing" constant="8" id="GuI-ll-1sn"/>
                                     <constraint firstAttribute="bottom" secondItem="C6K-4o-9gG" secondAttribute="bottom" constant="8" id="HWI-1L-mDL"/>
                                     <constraint firstAttribute="trailing" secondItem="yjE-38-AaV" secondAttribute="trailing" id="JaU-Y4-gj0"/>
                                     <constraint firstItem="C6K-4o-9gG" firstAttribute="top" secondItem="yjE-38-AaV" secondAttribute="bottom" constant="8" id="NIE-e7-92K"/>
                                     <constraint firstItem="yjE-38-AaV" firstAttribute="leading" secondItem="lKs-23-wpr" secondAttribute="leading" id="STn-U1-mFR"/>
-                                    <constraint firstItem="xl1-Jk-Ffm" firstAttribute="leading" secondItem="cEj-rQ-0Ch" secondAttribute="trailing" constant="8" id="eDl-Zf-0vg"/>
                                     <constraint firstAttribute="height" constant="80" id="j2u-kv-g7k"/>
                                     <constraint firstItem="yjE-38-AaV" firstAttribute="top" secondItem="lKs-23-wpr" secondAttribute="top" id="rR6-Rh-fnz"/>
                                     <constraint firstAttribute="bottom" secondItem="cEj-rQ-0Ch" secondAttribute="bottom" constant="10" id="xos-il-6p2"/>
@@ -673,9 +692,30 @@
                                     <constraint firstAttribute="bottom" secondItem="06w-gv-vv4" secondAttribute="bottom" constant="8" id="pnb-eX-nsd"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfC-Oy-hNc">
+                                <rect key="frame" x="296" y="212" width="63" height="63"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="63" id="TCg-0b-OeW"/>
+                                    <constraint firstAttribute="height" constant="63" id="h19-Uh-cp9"/>
+                                </constraints>
+                                <state key="normal" title="Change"/>
+                                <connections>
+                                    <action selector="changePlaylistButtonPressed:" destination="eaM-Cd-gjv" eventType="touchUpInside" id="bHB-yM-8U2"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Using Playlist - " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z8H-pf-i7o">
+                                <rect key="frame" x="16" y="212" width="280" height="63"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="Mqi-OQ-5L4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.40791973469999998" green="0.40792104600000001" blue="0.40792399639999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="PfF-nY-9I0" firstAttribute="trailing" secondItem="gfC-Oy-hNc" secondAttribute="trailing" constant="16" id="3Po-Vn-LKT"/>
                             <constraint firstItem="Zvm-ME-xUp" firstAttribute="top" secondItem="BXJ-sc-IwR" secondAttribute="bottom" constant="8" id="6a5-kW-Sxk"/>
                             <constraint firstItem="U7e-t2-yp2" firstAttribute="leading" secondItem="PfF-nY-9I0" secondAttribute="leading" id="A7m-fh-Mgr"/>
                             <constraint firstItem="U7e-t2-yp2" firstAttribute="top" secondItem="YLM-SF-60Y" secondAttribute="top" id="QnW-bs-jov"/>
@@ -683,14 +723,19 @@
                             <constraint firstItem="U7e-t2-yp2" firstAttribute="trailing" secondItem="PfF-nY-9I0" secondAttribute="trailing" id="bWq-FY-DSJ"/>
                             <constraint firstItem="BXJ-sc-IwR" firstAttribute="centerY" secondItem="YLM-SF-60Y" secondAttribute="centerY" id="gCO-eZ-agw"/>
                             <constraint firstItem="PfF-nY-9I0" firstAttribute="trailing" secondItem="BXJ-sc-IwR" secondAttribute="trailing" constant="8" id="kKb-Y2-oVk"/>
+                            <constraint firstItem="Z8H-pf-i7o" firstAttribute="leading" secondItem="PfF-nY-9I0" secondAttribute="leading" constant="16" id="l2q-ab-fy0"/>
+                            <constraint firstItem="gfC-Oy-hNc" firstAttribute="leading" secondItem="Z8H-pf-i7o" secondAttribute="trailing" id="pnI-Ex-olS"/>
+                            <constraint firstItem="BXJ-sc-IwR" firstAttribute="top" secondItem="Z8H-pf-i7o" secondAttribute="bottom" constant="8" id="tjr-LK-czJ"/>
                             <constraint firstItem="BXJ-sc-IwR" firstAttribute="leading" secondItem="PfF-nY-9I0" secondAttribute="leading" constant="8" id="vOS-Y5-z4a"/>
                             <constraint firstItem="BXJ-sc-IwR" firstAttribute="centerX" secondItem="YLM-SF-60Y" secondAttribute="centerX" id="yuq-la-iTn"/>
+                            <constraint firstItem="BXJ-sc-IwR" firstAttribute="top" secondItem="gfC-Oy-hNc" secondAttribute="bottom" constant="8" id="zNL-Wf-X1b"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PfF-nY-9I0"/>
                     </view>
                     <connections>
                         <outlet property="participantCountLabel" destination="06w-gv-vv4" id="gbA-mb-Vxi"/>
                         <outlet property="partyCodeLabel" destination="o4i-Zo-63G" id="2Sr-nK-wAc"/>
+                        <outlet property="selectedPlaylistLabel" destination="Z8H-pf-i7o" id="VbO-4e-JHl"/>
                         <outlet property="startPartyButton" destination="Zvm-ME-xUp" id="hF8-py-Tjm"/>
                     </connections>
                 </viewController>
@@ -715,6 +760,9 @@
                                             <constraint firstAttribute="width" secondItem="v6P-Sa-LZf" secondAttribute="height" multiplier="1:1" id="zib-if-Tii"/>
                                         </constraints>
                                         <state key="normal" title="O"/>
+                                        <connections>
+                                            <action selector="leaveRoundButtonPressed:" destination="Mxb-pH-IBi" eventType="touchUpInside" id="g6s-du-Vzo"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Round Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bn2-fS-7OO">
                                         <rect key="frame" x="60" y="30" width="99" height="40"/>
@@ -820,6 +868,9 @@
                                                 <state key="normal" title="Play / Pause">
                                                     <color key="titleColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="changePlaybackStateButtonPressed:" destination="Mxb-pH-IBi" eventType="touchUpInside" id="AXQ-83-T7R"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
